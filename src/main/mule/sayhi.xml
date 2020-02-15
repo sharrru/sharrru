@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ae6510f5-a02e-48ae-9ba8-d8bb2ae4a37f" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="sayhiFlow" doc:id="f5d1c625-4a92-4361-9c0a-c1002230956f" >
+		<http:listener doc:name="Listener" doc:id="0119176a-676b-4a6e-9219-837fc9080e3f" config-ref="HTTP_Listener_config" path="/justsaying"/>
+		<set-payload value='#["Hey!! this is just a test and its still running"]' doc:name="Set Payload" doc:id="c5ab57eb-f753-4635-80bb-0cb0614ba053" mimeType="application/json"/>
+		<logger level="INFO" doc:name="Logger" doc:id="3f60b69f-c9c1-4cf5-873c-e39d189a360c" message="#[payload]"/>
+	</flow>
+</mule>
